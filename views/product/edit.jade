@@ -1,0 +1,10 @@
+extends ../layout
+block content
+ h1= title
+ form(method='post', action='/product/' + product.id)
+  input(name='_method', value='PUT', type='hidden')
+  fieldset
+   legend Edit product
+   label Product Name:
+   input(name='product[name]' value='#{product.name}' required)
+   input(type='submit')

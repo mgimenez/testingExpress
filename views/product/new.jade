@@ -1,0 +1,11 @@
+extends ../layout
+block content
+ h1= title
+ form(method='post', action='/product')
+  fieldset
+   legend Add new product
+   label Product Name:
+   input(name='product[name]')
+   label Category Name:
+   input(name='category[name]')
+   input(type='submit')

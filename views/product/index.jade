@@ -1,0 +1,14 @@
+extends ../layout
+block content
+ h1= title
+ a(href='/product/new') Add new
+ - if(products.length)
+   ul.product-list
+    each product in products 
+     li name: #{product.name}, id: #{product.id} 
+      a(href="/product/#{product.id}/edit") Edit
+      form.d-ib(method='post', action='/product/' + product.id)
+       input(name='_method', value='DELETE', type='hidden')
+       button(type='submit') Delete
+ - else
+  p no hay productos
