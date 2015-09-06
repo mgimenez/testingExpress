@@ -3,12 +3,20 @@ block content
  h1= title
  a(href='/category/new') Add new
  - if(categorys.length)
-   ul.category-list
-    each category in categorys 
-     li name: #{category.name}, id: #{category.id} 
-      a(href="/category/#{category.id}/edit") Edit
-      form.d-ib(method='post', action='/category/' + category.id)
-       input(name='_method', value='DELETE', type='hidden')
-       button(type='submit') Delete
+   table.product-list(cellpadding='0' cellspacing='0')
+    thead
+     tr
+      td Name
+      td(colspan='2')
+    tbody
+     each category in categorys 
+      tr
+       td #{category.name}
+       td
+        a(href="/category/#{category.id}/edit") Edit
+       td
+        form.d-ib(method='post', action='/category/' + category.id)
+         input(name='_method', value='DELETE', type='hidden')
+         button(type='submit') Delete       
  - else
   p There aren't any categories

@@ -6,6 +6,9 @@ block content
    legend Add new product
    label Product Name:
    input(name='product[name]')
-   label Category Name:
-   input(name='category[name]')
+   label Price:
+   input(name='product[price]')
+   select(name='product[categoryId]')
+    each category in categories
+     option(value='#{category.id}') #{category.name}
    input(type='submit')

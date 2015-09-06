@@ -3,20 +3,28 @@
  */ 
 
 var Product = require('../models/product.js');
+var Category = require('../models/category.js');
 
 exports.list = function(req, res) {
     Product.find({}, function (err, products) {
-        res.render('product/index', {
-            title: 'Product list',
-            products: products
+        Category.find({}, function (err, categories) {
+            res.render('product/index', {
+                title: 'Product list',
+                products: products,
+                categories: categories
+
+            });
         });
     });
 };
 
 exports.new = function(req, res) {
-    res.render('product/new.jade', {
-        title: 'Add new product'
-    });
+    Category.find({}, function (err, categories) {
+        res.render('product/new.jade', {
+            title: 'Add new product',
+            categories: categories
+        });
+    })
 };
 
 exports.save = function(req, res) {
@@ -32,9 +40,12 @@ exports.save = function(req, res) {
 
 exports.edit = function(req, res) {
     Product.findById(req.params.id, function (err, product) {
-        res.render('product/edit', {
-            title: 'Edit product',
-            product: product
+        Category.find({}, function(err, categories){
+            res.render('product/edit', {
+                title: 'Edit product',
+                product: product,
+                categories: categories
+            });
         });
     });
 };
@@ -42,6 +53,7 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
     Product.findById(req.params.id, function (err, product) {
         product.name = req.body.product.name;
+        product.categoryId = req.body.product.categoryId;
         product.save(function(err){
             if(!err) {
                 res.redirect('/product');

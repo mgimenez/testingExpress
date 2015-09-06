@@ -10,9 +10,13 @@ var ProductSchema = new Schema({
         type: String,
         validate: [validatePresenceOf, 'name product is required!']
     },
-    category: {
+    price: {
+    	type: String,
+    	validate: [validatePresenceOf, 'price product is required!']
+    },
+    categoryId: {
     	type: Schema.ObjectId,
-    	ref: 'categories'
+    	ref: 'categorySchema'
     }
 });
 

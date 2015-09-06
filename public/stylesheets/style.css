@@ -10,3 +10,13 @@ a {
 .d-ib {
 	display: inline-block;
 }
+
+.product-list thead {
+	background: #ccc;
+	font-weight: bold;
+	text-align: center;
+}
+
+.product-list td {
+	padding: 5px;
+}

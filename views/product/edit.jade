@@ -7,4 +7,11 @@ block content
    legend Edit product
    label Product Name:
    input(name='product[name]' value='#{product.name}' required)
+   select(name='product[categoryId]')
+    each category in categories
+     if(product.categoryId==category.id)
+      option(value='#{category.id}' selected='selected') #{category.name}
+     else
+      option(value='#{category.id}') #{category.name}
+
    input(type='submit')
