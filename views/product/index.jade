@@ -1,32 +1,33 @@
 extends ../layout
 block content
  h1= title
- a(href='/product/new') Add new
+ a(href='/product/new') Agregar nuevo
  - if(products.length)
    table.product-list(cellpadding='0' cellspacing='0')
     thead
      tr
       //- td Product Id
-      td Name
-      td Price
+      td Nombre
+      td Precio
       //- td Category Id
-      td Category
-      td(colspan='2') Actions
+      td Categoria
+      td(colspan='2') Acciones
     tbody
      each product in products
       tr
        //- td #{product.id}
-       td #{product.name}
+       td
+        a(href='/product/#{product.id}') #{product.name}
        td $ #{product.price}
        //- td #{product.categoryId}
        each category in categories
         - if(product.categoryId==category.id)
            td #{category.name}
        td
-        a(href="/product/#{product.id}/edit") Edit
+        a(href="/product/#{product.id}/edit") Editar
        td
         form.d-ib(method='post', action='/product/' + product.id)
          input(name='_method', value='DELETE', type='hidden')
-         button(type='submit') Delete
+         button(type='submit') Eliminar
  - else
   p no hay productos

@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  h1= title
+  p Bienvenido a #{title}
+  form(class='ui-form' method='post', action='/admin')
+   div.form-row
+    label(for='username') User:
+    input(type='text' id='username' name='user[username]')
+   div.form-row
+    label(for='password') Pass:
+    input(type='text' id='password' name='user[password]')
+    span= messages.err
+
+   input(type='submit')

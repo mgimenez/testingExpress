@@ -8,11 +8,15 @@ function validatePresenceOf(value) {
 var ProductSchema = new Schema({
     name: {
         type: String,
-        validate: [validatePresenceOf, 'name product is required!']
+        validate: [validatePresenceOf, 'name is required!']
+    },
+    description: {
+        type: String,
+        validate: [validatePresenceOf, 'description is required!']
     },
     price: {
     	type: String,
-    	validate: [validatePresenceOf, 'price product is required!']
+    	validate: [validatePresenceOf, 'price is required!']
     },
     categoryId: {
     	type: Schema.ObjectId,

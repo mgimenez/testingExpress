@@ -2,9 +2,13 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Bienvenido a #{title}
   ul
    li
-    a(href='/product') Products
+    a(href='/product') Productos
    li
-    a(href='/category') Categories
+    a(href='/category') Categorias
+    ul
+     each category in categorys
+      li
+       a(href='/product/category/#{category.id}') #{category.name}

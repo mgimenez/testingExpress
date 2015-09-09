@@ -7,9 +7,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var routes = require('./routes');
-var users = require('./routes/user');
+// var users = require('./routes/user');
+var index = require('./routes/index');
 var product = require('./routes/category');
 var category = require('./routes/product');
+var admin = require('./routes/admin');
+// var session = require('express-session');
+// var flash = require('express-flash');
 var fs = require('fs');
 var app = express();
 
@@ -25,8 +29,13 @@ app.use(cookieParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
+// app.use(users);
+app.use(index);
 app.use(product);
 app.use(category);
+app.use(admin);
+// app.use(session({secret:'somesecrettokenhere'}));
+// app.use(flash());
 
 // development error handler
 // will print stacktrace
@@ -54,9 +63,6 @@ mongoose.connection.on('error', function (err) {
   console.log('Could not connect to Mongo server...');
   console.log(err);
 });
-
-app.get('/', routes.index);
-app.get('/users', users.list);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

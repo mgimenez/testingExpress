@@ -1,4 +1,6 @@
 /* GET home page. */
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
+var index = require('../controllers/index.js');
+var express = require('express');
+var app = module.exports = express();
+
+app.get('/', index.index);

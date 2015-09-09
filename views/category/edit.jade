@@ -1,10 +1,9 @@
 extends ../layout
 block content
  h1= title
- form(method='post', action='/category/' + category.id)
+ form(class='ui-form' method='post', action='/category/' + category.id)
   input(name='_method', value='PUT', type='hidden')
-  fieldset
-   legend Edit category
-   label Product Name:
-   input(name='category[name]' value='#{category.name}' required)
-   input(type='submit')
+  div.form-row
+   label Nombre:
+   input(type='text' name='category[name]' value='#{category.name}' required)
+  input(type='submit')

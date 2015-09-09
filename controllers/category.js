@@ -7,7 +7,7 @@ var Category = require('../models/category.js');
 exports.list = function(req, res) {
     Category.find({}, function (err, categorys) {
         res.render('category/index', {
-            title: 'category list',
+            title: 'Categorias',
             categorys: categorys
         });
     });
@@ -15,7 +15,7 @@ exports.list = function(req, res) {
 
 exports.new = function(req, res) {
     res.render('category/new.jade', {
-        title: 'Add new category'
+        title: 'Agregar nueva categoria'
     });
 };
 
@@ -33,7 +33,7 @@ exports.save = function(req, res) {
 exports.edit = function(req, res) {
     Category.findById(req.params.id, function (err, category) {
         res.render('category/edit', {
-            title: 'Edit category',
+            title: 'Editar categoria',
             category: category
         });
     });
@@ -61,12 +61,3 @@ exports.del = function(req, res) {
         });
     });
 };
-
-// exports.byCategory = function(req, res) {
-//     Category.findById(req.params.id, function (err, category) {
-//         if(!category) return next(new NotFound('Document Not Found'));
-//         category.remove(function() {
-//             res.redirect('/category');
-//         });
-//     });
-// };

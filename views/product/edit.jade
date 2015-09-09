@@ -1,17 +1,23 @@
 extends ../layout
 block content
  h1= title
- form(method='post', action='/product/' + product.id)
+ form(class='ui-form' method='post', action='/product/' + product.id)
   input(name='_method', value='PUT', type='hidden')
-  fieldset
-   legend Edit product
-   label Product Name:
-   input(name='product[name]' value='#{product.name}' required)
-   select(name='product[categoryId]')
+  div.form-row
+   label(for='name') Nombre:
+   input(type='text' id='name' name='product[name]' value='#{product.name}' required)
+  div.form-row
+   label(for='category') Categoria:
+   select(id='category' name='product[categoryId]')
     each category in categories
      if(product.categoryId==category.id)
       option(value='#{category.id}' selected='selected') #{category.name}
      else
       option(value='#{category.id}') #{category.name}
-
-   input(type='submit')
+  div.form-row
+   label(for='price') Precio:
+   input(type='text' id='price' name='product[price]' value='#{product.price}' required)
+  div.form-row
+   label(for='description') Descripcion:
+   textarea(id='description' name='product[description]') #{product.description}
+  input(type='submit')

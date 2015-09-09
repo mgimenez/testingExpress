@@ -1,0 +1,8 @@
+extends ../layout
+block content
+ h1 #{product.name}
+ each category in categories
+  if(product.categoryId==category.id)
+   p Categoria: #{category.name}
+ p Precio: $ #{product.price}
+ p Descripcion: #{product.description}

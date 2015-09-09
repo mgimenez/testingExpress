@@ -18,6 +18,32 @@ exports.list = function(req, res) {
     });
 };
 
+exports.productByCategory = function(req, res) {
+    var query = Product.where('categoryId', req.params.categoryId);
+    Product.find(query, function (err, products) {
+        Category.find({}, function (err, categories) {
+            res.render('product/index', {
+                title: 'Product list',
+                products: products,
+                categories: categories
+
+            });
+        });
+    });
+};
+
+exports.product = function(req, res) {
+    Product.findById(req.params.id, function (err, product) {
+        Category.find({}, function(err, categories){
+            res.render('product/product', {
+                title: 'Product Description',
+                product: product,
+                categories: categories
+            });
+        });
+    });
+};
+
 exports.new = function(req, res) {
     Category.find({}, function (err, categories) {
         res.render('product/new.jade', {
@@ -53,6 +79,8 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
     Product.findById(req.params.id, function (err, product) {
         product.name = req.body.product.name;
+        product.description = req.body.product.description;
+        product.price = req.body.product.price;
         product.categoryId = req.body.product.categoryId;
         product.save(function(err){
             if(!err) {
